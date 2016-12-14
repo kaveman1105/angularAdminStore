@@ -1,0 +1,23 @@
+<div id='container'>
+  <form class="ui form" [formGroup]='form' (ngSubmit)="OnSubmit(form.value)">
+    <div class="field">
+      <label>User Name</label>
+      <input type="text" formControlName="username" placeholder="User Name">
+    </div>
+    <div *ngIf="form.controls.username.invalid && form.controls.username.dirty" class="ui negative message">
+      <div class="header">
+        User Name is Required!
+      </div>
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" formControlName="password" placeholder="password">
+    </div>
+    <div *ngIf="form.controls.password.invalid && form.controls.password.dirty" class="ui negative message">
+      <div class="header">
+        Password is Required!
+      </div>
+    </div>
+    <button class="ui button" type="submit">Submit</button>
+  </form>
+</div>
