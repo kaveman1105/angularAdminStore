@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Login } from './login';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,10 @@ export class LoginComponent implements OnInit {
   public form: FormGroup;
   private error: string = '';
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private loginService: LoginService
+  ) {
     this.form = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -25,15 +29,17 @@ export class LoginComponent implements OnInit {
 
 
   OnSubmit(formValues) {
-    console.log(formValues);
+    this.error = '';
     if (!this.checkForms(formValues)) {
+      this.error = 'Both fields are required!';
       return;
     }
   }
 
   checkForms(submission: Login): boolean {
-    console.log(submission);
-
-    return true;
+    if (submission.password && submission.username) {
+      return true;
+    }
+    return false;
   }
 }

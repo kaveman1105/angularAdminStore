@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login/login.module';
 
+/* In Memory data service */
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,8 @@ import { LoginModule } from './login/login.module';
     HttpModule,
     LoginModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 500 })
   ],
   providers: [],
   bootstrap: [AppComponent]
