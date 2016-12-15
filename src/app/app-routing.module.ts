@@ -1,15 +1,26 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { CustomerComponent } from './customer/customer.component';
 
-const routes: Routes = [
+const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
-  { path: 'login', loadChildren: 'src/app/login/login.module#LoginModule' },
-  { path: 'dashboard', loadChildren: 'src/app/dashboard/dashboard.module#DashboardModule' }
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'dashboard', component: DashboardComponent,
+    children: [
+      { path: '', redirectTo: 'inventory', pathMatch: 'full' },
+      { path: 'inventory', component: InventoryComponent },
+      { path: 'customer', component: CustomerComponent }
+    ]
+  }
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+export const appRoutingProviders: any[] = [
+
+];
+
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

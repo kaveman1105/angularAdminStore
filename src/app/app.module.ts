@@ -4,8 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import { appRoutingProviders, routing } from './app-routing.module';
 import { LoginModule } from './login/login.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 /* In Memory data service */
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -20,11 +21,14 @@ import { InMemoryDataService } from './in-memory-data.service';
     FormsModule,
     HttpModule,
     LoginModule,
-    AppRoutingModule,
+    DashboardModule,
     ReactiveFormsModule,
+    routing,
     InMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 500 })
   ],
-  providers: [],
+  providers: [
+    appRoutingProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

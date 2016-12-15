@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Login } from './login';
 import { LoginService } from './login.service';
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router
   ) {
     this.form = this.formBuilder.group({
       username: ['', Validators.required],
@@ -30,10 +32,12 @@ export class LoginComponent implements OnInit {
 
   OnSubmit(formValues) {
     this.error = '';
-    if (!this.checkForms(formValues)) {
-      this.error = 'Both fields are required!';
-      return;
-    }
+
+    this.router.navigate(['dashboard']);
+    // if (!this.checkForms(formValues)) {
+    //   this.error = 'Both fields are required!';
+    //   return;
+    // }
   }
 
   checkForms(submission: Login): boolean {
