@@ -9,11 +9,11 @@ export class InMemoryDataService implements InMemoryDbService {
         ];
 
         let customers = [
-            { name: "kevin", id: 1, address: "somehere street", payment: 1234 },
+            { name: "kevin", id: 1, address: "somehere street", payment: 2234 },
             { name: "may", id: 2, address: "somehere street", payment: 1234 },
-            { name: "john", id: 3, address: "somehere street", payment: 1234 },
-            { name: "forrest gump", id: 4, address: "somehere street", payment: 1234 },
-            { name: "bruce bannor", id: 5, address: "somehere street", payment: 1234 },
+            { name: "john", id: 3, address: "somehere street", payment: 3234 },
+            { name: "forrest gump", id: 4, address: "somehere street", payment: 5234 },
+            { name: "bruce bannor", id: 5, address: "somehere street", payment: 8734 },
         ]
 
         let admins = [
