@@ -14,7 +14,7 @@
         <h2 class="ui aligned header">{{video.title}}</h2>
       </td>
       <td>
-        <div class="ui star rating" data-rating="3" data-max-rating="5">2</div>
+        <app-rating [rating]="video.rating"></app-rating>
       </td>
       <td class="ui center">
         {{video.description}}
