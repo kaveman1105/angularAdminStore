@@ -1,26 +1,29 @@
 <table class="ui celled padded table">
   <thead>
     <tr>
+      <th>ID</th>
       <th class="single line">Title</th>
       <th>Rating</th>
       <th>Description</th>
       <th>Price</th>
-
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let video of videos">
+      <td>{{video.id}}
+        <i class="edit icon right"></i>
+      </td>
       <td>
-        <h2 class="ui aligned header">{{video.title}}</h2>
+        <p> {{video.title}}</p>
       </td>
       <td>
         <app-rating [rating]="video.rating"></app-rating>
       </td>
       <td class="ui center">
-        {{video.description}}
+        <p>{{video.description}}</p>
       </td>
       <td class="ui center">
-        {{video.price | currency:'USD':true}}
+        <p>{{video.price | currency:'USD':true}}</p>
       </td>
     </tr>
   </tbody>

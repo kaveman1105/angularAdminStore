@@ -1,0 +1,11 @@
+ .right{
+   float: right;
+   font-size: 1.3em;
+}
+
+.right:hover{
+    color: blue;
+}
+p {
+font-size: 1.2em;
+}

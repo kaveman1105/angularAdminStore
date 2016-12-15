@@ -3,4 +3,5 @@ export class Video {
     rating: number;
     description: string;
     price: number;
+    id: number;
 }
