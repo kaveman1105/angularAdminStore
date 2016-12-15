@@ -4,6 +4,7 @@ import { CustomerModule } from '../customer/customer.module';
 import { InventoryModule } from '../inventory/inventory.module';
 import { DashboardComponent } from './dashboard.component';
 import { RouterModule } from '@angular/router';
+import { AdminService } from './admin.service';
 
 @NgModule({
   imports: [
@@ -14,6 +15,9 @@ import { RouterModule } from '@angular/router';
   ],
   declarations: [
     DashboardComponent
+  ],
+  providers: [
+    AdminService
   ]
 })
 export class DashboardModule { }

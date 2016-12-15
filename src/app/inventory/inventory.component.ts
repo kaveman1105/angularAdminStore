@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../dashboard/admin.service';
+import { Video } from '../dashboard/video';
 
 @Component({
   selector: 'app-inventory',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InventoryComponent implements OnInit {
 
-  constructor() { }
+  private videos: Video[] = [];
+  constructor(
+    private adminService: AdminService
+  ) { }
 
   ngOnInit() {
+
+    this.adminService.getInventory()
+      .subscribe(
+      videos => this.videos = videos,
+      error => console.log(error));
   }
 
 }

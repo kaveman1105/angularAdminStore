@@ -9,19 +9,18 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <tr *ngFor="let video of videos">
       <td>
-        <h2 class="ui center aligned header">A</h2>
-      </td>
-      <td class="single line">
-        Power Output
+        <h2 class="ui aligned header">{{video.title}}</h2>
       </td>
       <td>
-        <div class="ui star rating" data-rating="3" data-max-rating="3"></div>
+        <div class="ui star rating" data-rating="3" data-max-rating="5">2</div>
       </td>
-      <td class="right aligned">
-        80% <br>
-        <a href="#">18 studies</a>
+      <td class="ui center">
+        {{video.description}}
+      </td>
+      <td class="ui center">
+        {{video.price | currency}}
       </td>
     </tr>
   </tbody>
