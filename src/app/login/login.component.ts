@@ -33,14 +33,15 @@ export class LoginComponent implements OnInit {
 
   OnSubmit(formValues) {
     this.error = '';
-    console.log(this.form.valid);
     if (this.form.valid) {
       this.loginService.login()
         .then(results => {
           this.userProfile.isLoggedIn = this.loginService.checkLogin(formValues, results);
+          if (!this.userProfile.isLoggedIn) {
+            this.error = 'Incorrect User Name/Password';
+          }
           this.router.navigate(['dashboard']);
         });
-
     }
   }
 
