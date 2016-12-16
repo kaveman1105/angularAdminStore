@@ -12,6 +12,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 
+import { UserProfileService } from './user-profile.service'
+
 @NgModule({
   declarations: [
     AppComponent
@@ -27,7 +29,8 @@ import { InMemoryDataService } from './in-memory-data.service';
     InMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 500 })
   ],
   providers: [
-    appRoutingProviders
+    appRoutingProviders,
+    UserProfileService
   ],
   bootstrap: [AppComponent]
 })

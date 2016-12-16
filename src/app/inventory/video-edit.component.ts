@@ -15,6 +15,7 @@ import 'rxjs/add/operator/switchMap';
 export class VideoEditComponent implements OnInit {
 
   private video: Video;
+  private error: string;
   constructor(
     private adminService: AdminService,
     private route: ActivatedRoute,
@@ -32,8 +33,12 @@ export class VideoEditComponent implements OnInit {
   }
 
   save() {
-    this.adminService.updateVideo(this.video)
-      .then(() => this.goBack());
+    if (this.checkValid()) {
+      this.adminService.updateVideo(this.video)
+        .then(() => this.goBack());
+    } else {
+      this.error = 'Enter required values';
+    }
   }
 
   goBack() {
@@ -41,5 +46,12 @@ export class VideoEditComponent implements OnInit {
   }
   cancel() {
     this.goBack();
+  }
+
+  checkValid(): boolean {
+    return this.video.title && (this.video.rating >= 0 && this.video.rating <= 5) && this.video.price > 0;
+  }
+  clearError() {
+    this.error = '';
   }
 }

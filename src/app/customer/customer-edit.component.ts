@@ -15,6 +15,7 @@ export class CustomerEditComponent implements OnInit {
 
 
   private customer: Customer;
+  private error; string;
 
   constructor(
     private adminService: AdminService,
@@ -31,8 +32,12 @@ export class CustomerEditComponent implements OnInit {
   }
 
   save() {
-    this.adminService.updateCustomer(this.customer)
-      .then(() => this.goBack());
+    if (this.checkValid()) {
+      this.adminService.updateCustomer(this.customer)
+        .then(() => this.goBack());
+    } else {
+      this.error = 'Enter required Fields';
+    }
   }
 
   goBack() {
@@ -40,5 +45,12 @@ export class CustomerEditComponent implements OnInit {
   }
   cancel() {
     this.goBack();
+  }
+  checkValid(): boolean {
+    return this.customer.name && this.customer.address && this.customer.payment && true;
+  }
+
+  clearError() {
+    this.error = '';
   }
 }

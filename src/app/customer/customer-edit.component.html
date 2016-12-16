@@ -1,13 +1,19 @@
-<div class="ui form" *ngIf="customer" >
-  <div class="field error">
+<div class="ui negative message" *ngIf="error">
+  <i class="close icon" (click)="clearError()"></i>
+  <div class="header">
+   {{error}}
+  </div>
+</div>
+<div class="ui form" *ngIf="customer">
+  <div class="field " [class.error]="!customer.name">
     <label>Name</label>
     <input [(ngModel)]="customer.name" placeholder="Name" type="text">
   </div>
-  <div class="field">
+  <div class="field" [class.error]="!customer.address">
     <label>Address</label>
     <input [(ngModel)]="customer.address" type="text" placeholder="Address">
   </div>
-  <div class="field error">
+  <div class="field " [class.error]="!customer.payment">
     <label>Card Number</label>
     <input [(ngModel)]="customer.payment" placeholder="Card Number" type="number">
   </div>

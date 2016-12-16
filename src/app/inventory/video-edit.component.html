@@ -1,5 +1,11 @@
+<div class="ui negative message" *ngIf="error">
+  <i class="close icon" (click)="clearError()"></i>
+  <div class="header">
+   {{error}}
+  </div>
+</div>
 <div class="ui form" *ngIf="video">
-  <div class="field error">
+  <div class="field " [class.error]="!video.title.length">
     <label>Title</label>
     <input placeholder="Title" type="text" [(ngModel)]="video.title">
   </div>
@@ -8,13 +14,13 @@
     <textarea [(ngModel)]="video.description"></textarea>
   </div>
   <div class="two fields">
-    <div class="field error">
+    <div class="field " [class.error]="video.rating < 0 || video.rating > 5">
       <label>Rating</label>
-      <input placeholder="Rating" type="number" [(ngModel)]="video.rating">
+      <input placeholder="Rating" type="number" [(ngModel)]="video.rating" min="1" max="5">
     </div>
-    <div class="field error">
+    <div class="field " [class.error]="video.price < 0">
       <label>Price</label>
-      <input placeholder="Price" type="number" [(ngModel)]="video.price">
+      <input placeholder="Price" type="number" [(ngModel)]="video.price" min="1">
     </div>
   </div>
   <div class="right">
