@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { CustomerComponent } from './customer/customer.component';
+import { VideoEditComponent } from './inventory/video-edit.component';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
     children: [
       { path: '', redirectTo: 'inventory', pathMatch: 'full' },
       { path: 'inventory', component: InventoryComponent },
+      { path: 'inventory/:id', component: VideoEditComponent },
       { path: 'customer', component: CustomerComponent }
     ]
   }

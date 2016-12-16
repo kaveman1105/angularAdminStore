@@ -11,7 +11,7 @@
   <tbody>
     <tr *ngFor="let video of videos">
       <td>{{video.id}}
-        <i class="edit icon right"></i>
+        <i class="edit icon right" (click)="editVideo(video)"></i>
       </td>
       <td>
         <p> {{video.title}}</p>

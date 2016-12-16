@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Video } from './video';
 import { Customer } from './customer';
@@ -7,12 +7,16 @@ import { Customer } from './customer';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/toPromise';
+
 
 @Injectable()
 export class AdminService {
 
     private inventoryUrl = 'application/videos';
     private customerUrl = 'application/customers';
+
+    private headers = new Headers({ 'Content-Type': 'application/json' });
 
     constructor(
         private http: Http
@@ -24,9 +28,25 @@ export class AdminService {
             .catch((error: any) => Observable.throw(error));
     }
 
-    getCustomers(): Observable<Customer[]>{
+    getCustomers(): Observable<Customer[]> {
         return this.http.get(this.customerUrl)
             .map((res: Response) => res.json().data as Customer[])
             .catch((error: any) => Observable.throw(error));
+    }
+
+    getVideo(id: number): Promise<Video> {
+        return this.http.get(this.inventoryUrl)
+            .toPromise()
+            .then(response => response.json().data as Video[])
+            .then(videos => videos.find(video => video.id === id));
+    }
+
+    updateVideo(video: Video): Promise<Video> {
+        const url = `${this.inventoryUrl}/${video.id}`;
+        return this.http
+            .put(url, JSON.stringify(video), { headers: this.headers })
+            .toPromise()
+            .then(() => video)
+            .catch(error => console.log(error));
     }
 }

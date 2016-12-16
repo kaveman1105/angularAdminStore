@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 import { AdminService } from '../dashboard/admin.service';
 import { Video } from '../dashboard/video';
 
@@ -11,7 +12,8 @@ export class InventoryComponent implements OnInit {
 
   private videos: Video[] = [];
   constructor(
-    private adminService: AdminService
+    private adminService: AdminService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -22,5 +24,7 @@ export class InventoryComponent implements OnInit {
       error => console.log(error));
   }
 
-
+  editVideo(video: Video) {
+    this.router.navigate(['dashboard/inventory', video.id]);
+  }
 }

@@ -1,0 +1,26 @@
+<form [formGroup]='form' (ngSubmit)="OnSubmit(form.value)" *ngIf="video">
+  <div class="ui form">
+    <div class="field error">
+      <label>Title</label>
+      <input [(ngModel)]="video.title" placeholder="Title" type="text" formControlName="title">
+    </div>
+    <div class="field">
+      <label>Description</label>
+      <textarea [(ngModel)]="video.description" formControlName="description"></textarea>
+    </div>
+    <div class="two fields">
+      <div class="field error">
+        <label>Rating</label>
+        <input [(ngModel)]="video.rating" placeholder="Rating" type="number" formControlName="rating">
+      </div>
+      <div class="field error">
+        <label>Price</label>
+        <input [(ngModel)]="video.price" placeholder="Price" type="number" formControlName="price">
+      </div>
+    </div>
+    <div class="right">
+      <button class="ui button" type="submit">Save</button>
+      <button class="ui button" (click)="cancel()">Cancel</button>
+    </div>
+  </div>
+</form>
