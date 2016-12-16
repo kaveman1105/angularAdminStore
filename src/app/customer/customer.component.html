@@ -11,16 +11,17 @@
   <tbody>
     <tr *ngFor="let customer of customers">
       <td>
-        {{customer.id}}
+         {{customer.id}}
+        <i class="edit icon right" (click)="editCustomer(customer)"></i>
       </td>
       <td>
-        {{customer.name}}
+        <p>{{customer.name}}</p>
       </td>
       <td class="ui center">
-        {{customer.address}}
+        <p>{{customer.address}}</p>
       </td>
       <td class="ui center">
-        {{customer.payment | myCard}}
+        <p>{{customer.payment | myCard}}</p>
       </td>
     </tr>
   </tbody>

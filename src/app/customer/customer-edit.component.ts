@@ -2,37 +2,36 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { AdminService } from '../dashboard/admin.service';
-import { Video } from '../dashboard/video';
+import { Customer } from '../dashboard/customer';
 
-import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
-  selector: 'app-video-edit',
-  templateUrl: './video-edit.component.html',
-  styleUrls: ['./video-edit.component.css']
+  selector: 'app-customer-edit',
+  templateUrl: './customer-edit.component.html',
+  styleUrls: ['./customer-edit.component.css']
 })
-export class VideoEditComponent implements OnInit {
+export class CustomerEditComponent implements OnInit {
 
-  private video: Video;
+
+  private customer: Customer;
+
   constructor(
     private adminService: AdminService,
+    private location: Location,
     private route: ActivatedRoute,
-    private location: Location
-  ) {
-
-  }
+  ) { }
 
   ngOnInit() {
     this.route.params
-      .switchMap((params: Params) => this.adminService.getVideo(+params['id']))
-      .subscribe(video => {
-        this.video = video;
+      .switchMap((params: Params) => this.adminService.getCustomer(+params['id']))
+      .subscribe(customer => {
+        this.customer = customer;
       });
   }
 
   save() {
-    this.adminService.updateVideo(this.video)
+    this.adminService.updateCustomer(this.customer)
       .then(() => this.goBack());
   }
 

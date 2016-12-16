@@ -41,12 +41,27 @@ export class AdminService {
             .then(videos => videos.find(video => video.id === id));
     }
 
+    getCustomer(id: number): Promise<Customer> {
+        return this.http.get(this.customerUrl)
+            .toPromise()
+            .then(response => response.json().data as Customer[])
+            .then(customers => customers.find(customer => customer.id === id));
+
+    }
     updateVideo(video: Video): Promise<Video> {
         const url = `${this.inventoryUrl}/${video.id}`;
         return this.http
             .put(url, JSON.stringify(video), { headers: this.headers })
             .toPromise()
             .then(() => video)
+            .catch(error => console.log(error));
+    }
+    updateCustomer(customer: Customer): Promise<Customer> {
+        const url = `${this.customerUrl}/${customer.id}`;
+        return this.http
+            .put(url, JSON.stringify(customer), { headers: this.headers })
+            .toPromise()
+            .then(() => customer)
             .catch(error => console.log(error));
     }
 }

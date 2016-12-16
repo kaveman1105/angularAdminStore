@@ -1,26 +1,24 @@
-<form [formGroup]='form' (ngSubmit)="OnSubmit(form.value)" *ngIf="video">
-  <div class="ui form">
+<div class="ui form" *ngIf="video">
+  <div class="field error">
+    <label>Title</label>
+    <input placeholder="Title" type="text" [(ngModel)]="video.title">
+  </div>
+  <div class="field">
+    <label>Description</label>
+    <textarea [(ngModel)]="video.description"></textarea>
+  </div>
+  <div class="two fields">
     <div class="field error">
-      <label>Title</label>
-      <input [(ngModel)]="video.title" placeholder="Title" type="text" formControlName="title">
+      <label>Rating</label>
+      <input placeholder="Rating" type="number" [(ngModel)]="video.rating">
     </div>
-    <div class="field">
-      <label>Description</label>
-      <textarea [(ngModel)]="video.description" formControlName="description"></textarea>
-    </div>
-    <div class="two fields">
-      <div class="field error">
-        <label>Rating</label>
-        <input [(ngModel)]="video.rating" placeholder="Rating" type="number" formControlName="rating">
-      </div>
-      <div class="field error">
-        <label>Price</label>
-        <input [(ngModel)]="video.price" placeholder="Price" type="number" formControlName="price">
-      </div>
-    </div>
-    <div class="right">
-      <button class="ui button" type="submit">Save</button>
-      <button class="ui button" (click)="cancel()">Cancel</button>
+    <div class="field error">
+      <label>Price</label>
+      <input placeholder="Price" type="number" [(ngModel)]="video.price">
     </div>
   </div>
-</form>
+  <div class="right">
+    <button class="ui button" (click)="save()">Save</button>
+    <button class="ui button" (click)="cancel()">Cancel</button>
+  </div>
+</div>

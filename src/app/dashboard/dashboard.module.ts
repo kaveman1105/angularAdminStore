@@ -3,8 +3,10 @@ import { CommonModule } from '@angular/common';
 import { CustomerModule } from '../customer/customer.module';
 import { InventoryModule } from '../inventory/inventory.module';
 import { DashboardComponent } from './dashboard.component';
-import { RouterModule, ActivatedRoute } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AdminService } from './admin.service';
+
+
 
 @NgModule({
   imports: [
