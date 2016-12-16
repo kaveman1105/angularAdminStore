@@ -7,12 +7,13 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { CustomerComponent } from './customer/customer.component';
 import { VideoEditComponent } from './inventory/video-edit.component';
 import { CustomerEditComponent } from './customer/customer-edit.component';
+import { AuthGuardService} from './shared/auth-guard.service'
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
   {
-    path: 'dashboard', component: DashboardComponent,
+    path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService],
     children: [
       { path: '', redirectTo: 'inventory', pathMatch: 'full' },
       { path: 'inventory', component: InventoryComponent },

@@ -15,9 +15,17 @@ export class LoginService {
         private http: Http
     ) { }
 
-    login(): Observable<Login[]> {
+    login(): Promise<Login[]> {
         return this.http.get(this.loginserviceUrl)
-            .map((res: Response) => res.json().data as Login[])
-            .catch((error: any) => Observable.throw(error));
+            .toPromise()
+            .then(response => response.json().data as Login[])
+            .catch(error => console.log(error));
     }
+
+    checkLogin(user: Login, admins: Login[]): boolean {
+        let result = admins.find(x => x.password === user.password && x.userName === user.userName)
+        return result ? true : false;
+    }
+
+
 }

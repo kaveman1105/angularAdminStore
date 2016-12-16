@@ -12,7 +12,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 
-import { UserProfileService } from './user-profile.service'
+import { UserProfileService } from './user-profile.service';
+import { AuthGuardService } from './shared/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { UserProfileService } from './user-profile.service'
   ],
   providers: [
     appRoutingProviders,
-    UserProfileService
+    UserProfileService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })
