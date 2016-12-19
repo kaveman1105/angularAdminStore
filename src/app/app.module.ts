@@ -14,6 +14,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 
 import { UserProfileService } from './user-profile.service';
 import { AuthGuardService } from './shared/auth-guard.service';
+import { CanDeactivateGuard } from './shared/can-deactivate-guard.service';
 
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
@@ -35,6 +36,7 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
     appRoutingProviders,
     UserProfileService,
     AuthGuardService,
+    CanDeactivateGuard,
     CookieService
   ],
   bootstrap: [AppComponent]
