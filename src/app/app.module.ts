@@ -15,6 +15,8 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { UserProfileService } from './user-profile.service';
 import { AuthGuardService } from './shared/auth-guard.service';
 
+import { CookieService } from 'angular2-cookie/services/cookies.service';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -32,7 +34,8 @@ import { AuthGuardService } from './shared/auth-guard.service';
   providers: [
     appRoutingProviders,
     UserProfileService,
-    AuthGuardService
+    AuthGuardService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

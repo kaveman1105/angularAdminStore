@@ -5,6 +5,9 @@ import {
     Router
 } from '@angular/router';
 
+
+
+
 @Injectable()
 export class AuthGuardService implements CanActivate {
 
@@ -17,7 +20,8 @@ export class AuthGuardService implements CanActivate {
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ) {
-        if (this.userProfile.isLoggedIn) {
+
+        if (this.userProfile.checkLoginCookie()) {
             return true;
         } else {
             this.router.navigate(['login']);

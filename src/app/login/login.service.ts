@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Login } from './login';
-import { Observable } from 'rxjs/Observable';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -11,8 +11,10 @@ import 'rxjs/add/observable/throw';
 export class LoginService {
 
     private loginserviceUrl: string = 'application/admins';
+    private loginCookie: string = 'loggedIn';
     constructor(
-        private http: Http
+        private http: Http,
+        private cookieService: CookieService
     ) { }
 
     login(): Promise<Login[]> {
@@ -28,4 +30,11 @@ export class LoginService {
     }
 
 
+    setLoginCookie() {
+        this.cookieService.put(this.loginCookie, this.loginCookie);
+    }
+
+    removeLoginCookie() {
+        this.cookieService.remove(this.loginCookie);
+    }
 }

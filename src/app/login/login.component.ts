@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { UserProfileService } from '../user-profile.service';
 import { LoginService } from './login.service';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     private router: Router,
-    private userProfile: UserProfileService
+    private userProfile: UserProfileService,
+    private cookieService: CookieService
   ) {
     this.form = this.formBuilder.group({
       userName: ['', Validators.required],
@@ -33,14 +35,17 @@ export class LoginComponent implements OnInit {
 
   OnSubmit(formValues) {
     this.error = '';
+    console.log(this.form.valid);
     if (this.form.valid) {
+
       this.loginService.login()
         .then(results => {
-          this.userProfile.isLoggedIn = this.loginService.checkLogin(formValues, results);
-          if (!this.userProfile.isLoggedIn) {
+          if (!this.loginService.checkLogin(formValues, results)) {
             this.error = 'Incorrect User Name/Password';
+          } else {
+            this.loginService.setLoginCookie();
+            this.router.navigate(['dashboard']);
           }
-          this.router.navigate(['dashboard']);
         });
     }
   }
