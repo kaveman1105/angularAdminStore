@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UserProfileService } from '../user-profile.service';
 import { LoginService } from './login.service';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { Login } from './login';
 
 @Component({
   selector: 'app-login',
@@ -32,21 +33,18 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-
-  OnSubmit(formValues) {
+  authenticate(formValues) {
     this.error = '';
-    console.log(this.form.valid);
     if (this.form.valid) {
-
-      this.loginService.login()
-        .then(results => {
-          if (!this.loginService.checkLogin(formValues, results)) {
-            this.error = 'Incorrect User Name/Password';
-          } else {
+      this.loginService.authenticate(formValues)
+        .subscribe(res => {
+          if (res) {
             this.loginService.setLoginCookie();
             this.router.navigate(['dashboard']);
+          } else {
+            this.error = 'Incorrect User Name/Password';
           }
-        });
+        }, err => this.error = 'server error: ' + err);
     }
   }
 
