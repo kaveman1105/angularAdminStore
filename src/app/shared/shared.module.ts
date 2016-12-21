@@ -4,6 +4,7 @@ import { CardPipe } from './card.pipe';
 import { RatingModule } from './rating/rating.module';
 
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -11,6 +12,7 @@ import { RatingModule } from './rating/rating.module';
   ],
   declarations: [
     CardPipe,
+
   ],
   exports: [
     CardPipe,

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http } from '@angular/http';
 import { Login } from './login';
 import { Observable } from 'rxjs/Observable';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
@@ -22,7 +22,7 @@ export class LoginService {
     ) { }
 
     checkLogin(user: Login, admins: Login[]): boolean {
-        let result = admins.find(x => x.password === user.password && x.userName === user.userName)
+        let result = admins.find(x => x.password === user.password && x.userName === user.userName);
         return result ? true : false;
     }
 

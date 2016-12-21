@@ -3,6 +3,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { AdminService } from '../dashboard/admin.service';
 import { Customer } from '../dashboard/customer';
+import { GoogleMapsService } from '../shared/google-maps.service';
+
 
 import 'rxjs/add/operator/switchMap';
 
@@ -18,10 +20,15 @@ export class CustomerEditComponent implements OnInit {
   private error: string;
   private clone: Customer = new Customer();
 
+  private lat: number;
+  private lng: number;
+  private zoom: number = 13;
+
   constructor(
     private adminService: AdminService,
     private location: Location,
     private route: ActivatedRoute,
+    private googleMapsService: GoogleMapsService
   ) { }
 
   ngOnInit() {
@@ -29,8 +36,11 @@ export class CustomerEditComponent implements OnInit {
       .switchMap((params: Params) => this.adminService.getCustomer(+params['id']))
       .subscribe(customer => {
         this.customer = customer;
+        this.geoCode(this.customer.address);
         this.copy(customer);
       });
+
+
   }
 
   save() {
@@ -57,7 +67,7 @@ export class CustomerEditComponent implements OnInit {
     this.error = '';
   }
   onChange() {
-    console.log('something changed');
+    this.geoCode(this.customer.address);
   }
 
   copy(customer: Customer) {
@@ -75,5 +85,16 @@ export class CustomerEditComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  geoCode(address: string) {
+    this.googleMapsService.getLatLan(address)
+      .subscribe
+      (res => {
+        this.lat = res.lat();
+        this.lng = res.lng();
+      },
+      err => console.log(err)
+      );
   }
 }
